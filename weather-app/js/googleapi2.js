@@ -1,10 +1,11 @@
 //variables to return gps coords.
 var lattitude2,
     longitude2,
-    places
+    places;
 
-//initiate google.map api
-function initAutocomplete2(longitude2,lattitude2) {
+//initiate google.map api2
+$(document).ready(function initAutocomplete2(longitude2,lattitude2) {
+
     var map2 = new google.maps.Map(document.getElementById('map2'), {
     center: {lat: -37.6878, lng: 176.1651},
     zoom: 12,
@@ -61,11 +62,31 @@ function initAutocomplete2(longitude2,lattitude2) {
         position: places.geometry.location
     }));
 
+    //taking gps coords from google places api
     lattitude2 = places.geometry.location.lat(),
     longitude2 = places.geometry.location.lng();
+        
+    //http for weather map api loaded into variable
+    var openweapi = 
+    'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d';
 
     // pop up alert to display lattitude / longitude coords
     window.alert('latttitude:  ' + lattitude2 + '    longitude:  ' + longitude2);
+    
+    //retrieving data from weather app and displaying
+    $.getJSON(openweapi,function(data){
+
+        var city = data.name,
+            description = data.weather[0].description,
+            temperature =  data.main.temp,
+            windspeed =  data.wind.speed;
+
+        document.getElementById("weatherinfo2").innerHTML =
+        "City name =          " + city +
+        "<br/>Description =   " + description + 
+        "<br/>Temperature =   " + temperature +
+        "<br/>Windspeed =      " + windspeed
+    });
 
     if (places.geometry.viewport) {
     // Only geocodes have viewport.
@@ -79,4 +100,5 @@ function initAutocomplete2(longitude2,lattitude2) {
 
     map2.fitBounds(bounds);
     });
-}
+});
+
