@@ -1,15 +1,32 @@
 //variables to return gps coords.
-var lattitude2,
-    longitude2,
+var lattitude2="-43.525650",
+    longitude2="172.639847",
+    //http for weather map api loaded into variable
+    openweapi = 
+    'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
+   
+    $.getJSON(openweapi,function(data){
+        
+                var city = data.name,
+                    description = data.weather[0].description,
+                    temperature =  data.main.temp,
+                    windspeed =  data.wind.speed;
+        
+                document.getElementById("weatherinfo2").innerHTML =
+                "City name =          " + city +
+                "<br/>Description =   " + description + 
+                "<br/>Temperature =   " + temperature +
+                "<br/>Windspeed =      " + windspeed
+            });        
 
 //initiate google.map api2
 $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
 
     var map2 = new google.maps.Map(document.getElementById('map2'), {
-    center: {lat: -37.6878, lng: 176.1651},
+    center: {lat: -43.525650, lng: 172.639847},
     zoom: 12,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'satellite'
     });
 
     //get user input data
@@ -65,10 +82,9 @@ $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
     //taking gps coords from google places api
     lattitude2 = places.geometry.location.lat(),
     longitude2 = places.geometry.location.lng();
-        
-    //http for weather map api loaded into variable
-    var openweapi = 
-    'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d';
+    openweapi = 
+    'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
+    places;
 
     // pop up alert to display lattitude / longitude coords
     window.alert('latttitude:  ' + lattitude2 + '    longitude:  ' + longitude2);

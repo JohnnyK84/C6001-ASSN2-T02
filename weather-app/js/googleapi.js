@@ -1,15 +1,32 @@
 //variables to return gps coords.
-var lattitude,
-    longitude,
-    place
+var lattitude="-37.6878",
+    longitude="176.1651",
+    //http for weather map api loaded into variable
+    openweapi = 
+    'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
+    places;
+
+    $.getJSON(openweapi,function setWeather(data){
+      
+              var city = data.name,
+                  description = data.weather[0].description,
+                  temperature =  data.main.temp,
+                  windspeed =  data.wind.speed;
+      
+              document.getElementById("weatherinfo").innerHTML =
+              "City name =          " + city +
+              "<br/>Description =   " + description + 
+              "<br/>Temperature =   " + temperature +
+              "<br/>Windspeed =      " + windspeed
+    });
 
 //initiate google.map api
-function initAutocomplete(lattitude,longitude) {
+function initAutocomplete(lattitude,longitude,openweapi) {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -37.6878, lng: 176.1651},
       zoom: 12,
-      mapTypeId: 'roadmap'
-    });
+      mapTypeId: 'satellite'
+    });   
 
     //get user input data
     var input = document.getElementById('pac-input');
@@ -61,11 +78,31 @@ function initAutocomplete(lattitude,longitude) {
         position: place.geometry.location
       }));
 
+      //receiving gps coord from google places api
       lattitude = place.geometry.location.lat(),
       longitude = place.geometry.location.lng();
-      
-      // pop up alert to display lattitude / longitude coords
-      window.alert('latttitude:  ' + lattitude + '    longitude:  ' + longitude);
+
+      //http for weather map api loaded into variable
+    var openweapi = 
+    'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d';
+
+    // pop up alert to display lattitude / longitude coords
+    window.alert('latttitude:  ' + lattitude + '    longitude:  ' + longitude);
+    
+    //retrieving data from weather app and displaying
+    $.getJSON(openweapi,function(data){
+
+        var city = data.name,
+            description = data.weather[0].description,
+            temperature =  data.main.temp,
+            windspeed =  data.wind.speed;
+
+        document.getElementById("weatherinfo").innerHTML =
+        "City name =          " + city +
+        "<br/>Description =   " + description + 
+        "<br/>Temperature =   " + temperature +
+        "<br/>Windspeed =      " + windspeed
+    });
       
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
