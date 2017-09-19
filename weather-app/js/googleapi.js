@@ -6,7 +6,7 @@ var lattitude="-37.6878",
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
 
-    $.getJSON(openweapi,function setWeather(data){
+    $.getJSON(openweapi,function(data){
       
               var city = data.name,
                   description = data.weather[0].description,
