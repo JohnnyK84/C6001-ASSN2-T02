@@ -2,12 +2,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
+  <!-- added the script below to get jquery working in electron -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="jquery-3.2.1.min.js"> </script>
+
     <title>Weather App</title>
     <link href="./css/main.css" type="text/css" rel="stylesheet" />   
   </head>
 
-
-  <body onload="initAutocomplete2()">
+  <body onload="setWeather()">
 
 <!-- Navigation -->
   
@@ -30,7 +33,7 @@
 
             <!-- Johnny was working this part of the code -->
             <input id = "pac-input" type="text" placeholder="Your current location..." spellcheck="true" required/>
-            <button type="submit" id="current-location-button">Get the Forecast</button>
+            <button type="submit" id="getWeather()">Get the Forecast</button>
             
             <!-- The section to display the map -->
             <div id="map"></div>
@@ -38,9 +41,8 @@
             <!-- The section to display the current city weather -->
             <!-- As far as i remember, Stephen is working with this part of the code -->
             <div id="current-weather-display">
-              <p>Temperature: <span id="temp1"></span></p>
-              <p>Wind: <span id="wind1"></span></p>
-              <p>Sky: <span id="sky1"></span></p>
+                <h2>Weather Information:</h2>
+              <p id="weatherinfo"></p>
             </div>
 
             <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
@@ -58,16 +60,15 @@
           
           <!-- Johnny was working this part of the code -->
           <input id="pac-input2" placeholder="Your chosen location..." spellcheck="true" required/>
-          <button type="submit" id="chosen-location-button">Get the Forecast</button>
+          <button >Get the Forecast</button>
           
           <!-- The section to display the second map -->
           <div id="map2"></div>
 
           <!-- The section to display the chosen city weather -->
           <div id="chosen-weather-display">
-            <p>Temperature: <span id="temp2"></span></p>
-            <p>Wind: <span id="wind2"></span></p>
-            <p>Sky: <span id="sky2"></span></p>
+            <h2>Weather Information:</h2>
+            <p id="weatherinfo2"></p>
           </div>
 
           <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
@@ -76,16 +77,18 @@
         </section>
         
   </div>
-  
-  
 
 <!-- Link your .js files here -->
+
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb_UKEQuxmKcT4WyQ7VsGLrhqXyxVwW7A&libraries=places&callback=initAutocomplete"
-        async defer></script>
+            async defer></script>
 
     <script type="text/javascript" src="js/navigation-menu.js"></script>
     <script src="js/googleapi.js"></script>
-    <script src="js/googleapi2.js"></script>
+    <script type="text/javascript" src="js/googleapi2.js"></script>
+
+    <script>if (window.module) module = window.module;</script>
 
   </body>
 </html>
