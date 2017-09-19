@@ -72,6 +72,17 @@
 h1 {
     margin-top: -20px;
     margin-bottom: 40px;
+    color: #C71585;
+    font-family: "Arial Black";
+}
+
+h2 {
+    padding-top: 20px;
+    font-family: Arial;
+}
+
+#help-text {
+    font-family: Arial;
 }
 
 #map,#map2 {
