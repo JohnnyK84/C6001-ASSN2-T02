@@ -58,7 +58,9 @@ $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
     if (places.length == 0) {
         return;
       }  
-
+     if (places.length ==1) {
+      localStorage.setItem('input2', places[0].name);
+    }
     // Clear out the old markers.
     markers2.forEach(function(markers2) {
     markers2.setMap(null);
