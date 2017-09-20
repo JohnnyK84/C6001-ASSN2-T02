@@ -5,10 +5,10 @@ var lattitude="-37.6878",
     openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
-    
+  
   //setting all weather data variables from api
   $.getJSON(openweapi,function(data){
-      
+              
               var city = data.name,
                   description = data.weather[0].description,
                   temperature =  data.main.temp,
@@ -41,7 +41,6 @@ function initAutocomplete(lattitude,longitude,openweapi) {
 
     //get user input data
     var input = document.getElementById('pac-input');
-
     var searchBox = new google.maps.places.SearchBox(input);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -56,9 +55,11 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
     if (places.length == 0) {
-      return;
+      return; 
     }
-
+    if (places.length ==1) {
+      localStorage.setItem('input', places[0].name);
+    }
     // Clear out the old markers.
     markers.forEach(function(marker) {
       marker.setMap(null);
@@ -130,7 +131,8 @@ function initAutocomplete(lattitude,longitude,openweapi) {
       } else {
         bounds.extend(place.geometry.location);
       }
-      return lattitude,longitude;
+      localStorage.
+      window.gloLon = longitude;
     });
     
       map.fitBounds(bounds);
