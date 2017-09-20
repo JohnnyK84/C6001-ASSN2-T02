@@ -14,13 +14,22 @@
 
 <!-- Navigation -->
   
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="./index.html">Home</a>
-    <a href="./help.html">Help</a>
-    <a href="./resources.html">Info</a>
+  <div id="mySidenav">
+    <div id="home" class="tooltip">
+      <a href="./index.html">
+        <img src="./css/img/home.png" alt="Home" id="homeimg" />   
+        <span class="tooltiptext">Home</span>     
+      </a>
+    </div>
+    <div id="help" class="tooltip">
+      <a href="./help.html"><img src="./css/img/help.png" alt="Help" id="helpimg" ></a>
+      <span class="tooltiptext">Help</span>
+    </div>
+    <div id="info" class="tooltip">
+      <a href="./resources.html"><img src="./css/img/info.png" alt="Info" id="infoimg" ></a>
+      <span class="tooltiptext">Info</span>
+    </div>
   </div>
-  <span id="navicon" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
  
 
   <div id="main">
@@ -84,7 +93,6 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb_UKEQuxmKcT4WyQ7VsGLrhqXyxVwW7A&libraries=places&callback=initAutocomplete"
             async defer></script>
 
-    <script type="text/javascript" src="js/navigation-menu.js"></script>
     <script src="js/googleapi.js"></script>
     <script type="text/javascript" src="js/googleapi2.js"></script>
 
