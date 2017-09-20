@@ -58,7 +58,8 @@
             <!-- As far as I remember, Taylor is working with this part of the code -->
             <!-- It will take user to a separate page. It's no longer a popup screen.
                  I made a separete page as it will be easier to apply css and js -->
-            <button type="button" id="more-details1"><a href="./more-details.html">More details</a></button>
+            <button type="button" onclick="window.open('./more-details.html');" id="more-details">
+              <span class="icon"></span>5 Day Forecast</button>
 
         </section>
 
@@ -81,8 +82,8 @@
           </div>
 
           <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
-          <button type="button" id="more-details2"><a href="./more-details2.html" TARGET="_blank">More details</a></button>
-
+          <button type="button" onclick="window.open('./more-details2.html');" id="more-details2">
+            <span class="icon"></span>5 Day Forecast</button>
         </section>
         
   </div>

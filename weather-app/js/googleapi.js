@@ -36,7 +36,7 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -37.6878, lng: 176.1651},
       zoom: 12,
-      mapTypeId: 'satellite'
+      mapTypeId: 'roadmap'
     });   
 
     //get user input data
@@ -131,8 +131,6 @@ function initAutocomplete(lattitude,longitude,openweapi) {
       } else {
         bounds.extend(place.geometry.location);
       }
-      localStorage.
-      window.gloLon = longitude;
     });
     
       map.fitBounds(bounds);

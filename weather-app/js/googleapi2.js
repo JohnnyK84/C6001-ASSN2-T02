@@ -36,7 +36,7 @@ $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
     var map2 = new google.maps.Map(document.getElementById('map2'), {
     center: {lat: -43.525650, lng: 172.639847},
     zoom: 12,
-    mapTypeId: 'satellite'
+    mapTypeId: 'roadmap'
     });
 
     //get user input data
