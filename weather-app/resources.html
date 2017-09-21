@@ -10,39 +10,83 @@
 
 <!-- Navigation -->
   
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="./index.html">Home</a>
-        <a href="./help.html">Help</a>
-        <a href="./resources.html">Info</a>
+    <div id="mySidenav">
+        <div id="home" class="tooltip">
+          <a href="./index.html">
+            <img src="./css/img/home.png" alt="Home" id="homeimg" />   
+            <span class="tooltiptext">Home</span>     
+          </a>
+        </div>
+        <div id="help" class="tooltip">
+          <a href="./help.html"><img src="./css/img/help.png" alt="Help" id="helpimg" ></a>
+          <span class="tooltiptext">Help</span>
+        </div>
+        <div id="info" class="tooltip">
+          <a href="./resources.html"><img src="./css/img/info.png" alt="Info" id="infoimg" ></a>
+          <span class="tooltiptext">Info</span>
+        </div>
     </div>
-    <span id="navicon" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
      
     
     <div id="main">
-        <h1>Resources</h1>
+        <h1>Resources and Documentation</h1>
 
         <div id="resources-text">
             <p>
-                <strong>Tools and Resources</strong><br />
+              <span style ="font-weight: bold">TOOLS AND RESOURCES:</span>
+              <br>
+              <br>
                 A number of online tools and resources are utilized in the 
                 development and operation of this app.
-                
-                Geographical data is obtained from the Google Maps APIs site: 
+                <br>
+                <br>
+                Geographical data and the Google maps are obtained from the
+                Google Maps APIs site: <br>
                 https://maps.googleapis.com/maps/api
-                
-                Weather data is obtained from the Open Weather Map site:
+                <br>
+                <br>
+                Weather data is obtained from the Open Weather Map APIs site: <br>
                 http://api.openweathermap.org/data
-                
-                Pre-built Electron, package JSON, and library jquery script
-                are relied on processing and presenting the data.
+                <br>
+                <br>
+                Pre-built Electron, package JSON, and jquery library script
+                are relied on for processing and presenting the data.
+                <br>
+                <br>
             </p>
             <p>
-                <strong>Documentation</strong><br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              <span style ="font-weight: bold">DOCUMENTATION:</span>
+              <br>
+              <br>
+                Please read these terms of use.  By using this site you 
+                indicate that you accept these terms of use and that you 
+                agree to abide by them.  If you do not agree to these terms
+                of use, please refrain from using our site.
+                <br>
+                <br>
+                <span style ="font-weight: bold">Disclaimer</span>
+                <br>
+                <br>
+                The materials contained on our site are provided for general
+                information purposes only and do not claim to be or constitute
+                legal or other professional advice and shall not be relied on
+                as such.
+                <br>
+                <br>
+                We do not accept any responsibility for any loss which may arise
+                from accessing or reliance on the information on this site and
+                to the fullest extent permitted by New Zealand law, we exclude 
+                all liability for loss or damages direct or indirect arising from
+                use of this site.
+                <br>
+                <br>
+                <span style ="font-weight: bold">Contact Information</span>
+                <br>
+                <br>
+                COMP6001 GUI Programming Course,
+                Toi Ohomai Institute of Technology,
+                Bongard Building,
+                Cameron Road, Tauranga.
             </p>
                 
         </div>

@@ -5,10 +5,10 @@ var lattitude="-37.6878",
     openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
-    
+  
   //setting all weather data variables from api
   $.getJSON(openweapi,function(data){
-      
+              
               var city = data.name,
                   description = data.weather[0].description,
                   temperature =  data.main.temp,
@@ -16,18 +16,17 @@ var lattitude="-37.6878",
                   weathericon = data.weather[0].icon,
 
                   tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-                  iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+                  iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-              //setting weather descripton in html    
+              //setting weather descripton in html table    
               document.getElementById("weatherinfo").innerHTML =
-
-              "City name =          " + city +
-              "<br/>Description =   " + description + 
-              "<br/>Temperature &#8451; =   " + tempcels +
-              "<br/>Windspeed meter/sec =      " + windspeed;
-
+              "<tr><th>"+ city +"</th></tr>"
+              +"<tr><td>Description:   " + description + "</td></tr>"
+              +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+              +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+              
               //setting img in html
-              document.getElementById("iconurl2").src=iconurl2;
+              document.getElementById("iconurl").src=iconurl;
     });
 
 //initiate google.map api
@@ -36,12 +35,11 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     var map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -37.6878, lng: 176.1651},
       zoom: 12,
-      mapTypeId: 'satellite'
+      mapTypeId: 'roadmap'
     });   
 
     //get user input data
     var input = document.getElementById('pac-input');
-
     var searchBox = new google.maps.places.SearchBox(input);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -56,9 +54,11 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     searchBox.addListener('places_changed', function() {
     var places = searchBox.getPlaces();
     if (places.length == 0) {
-      return;
+      return; 
     }
-
+    if (places.length ==1) {
+      localStorage.setItem('input', places[0].name);
+    }
     // Clear out the old markers.
     markers.forEach(function(marker) {
       marker.setMap(null);
@@ -102,35 +102,32 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     
       //retrieving data from weather app and displaying
       $.getJSON(openweapi,function(data){
-      
-              var city = data.name,
-                  description = data.weather[0].description,
-                  temperature =  data.main.temp,
-                  windspeed =  data.wind.speed;
-                  weathericon = data.weather[0].icon,
+        
+        var city = data.name,
+            description = data.weather[0].description,
+            temperature =  data.main.temp,
+            windspeed =  data.wind.speed;
+            weathericon = data.weather[0].icon,
 
-                  tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-                  iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+            tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+            iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-              //setting weather descripton in html    
-              document.getElementById("weatherinfo").innerHTML =
-
-              "City name =          " + city +
-              "<br/>Description =   " + description + 
-              "<br/>Temperature &#8451; =   " + tempcels +
-              "<br/>Windspeed meter/sec =      " + windspeed;
-
-              //setting img in html
-              document.getElementById("iconurl2").src=iconurl2;
-      });
-      
+        //setting weather descripton in html table    
+        document.getElementById("weatherinfo").innerHTML =
+        "<tr><th>"+ city +"</th></tr>"
+        +"<tr><td>Description:   " + description + "</td></tr>"
+        +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+        +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+        
+        //setting img in html
+        document.getElementById("iconurl").src=iconurl;
+});
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
       } else {
         bounds.extend(place.geometry.location);
       }
-      return lattitude,longitude;
     });
     
       map.fitBounds(bounds);

@@ -4,52 +4,75 @@
 /* Student name: Olena Spektor */
 /*******************************/
 
-.sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+#mySidenav {
+    height: 100%;
+    width: 50px;
+    position: fixed;
+    z-index: 1;
+    background-color: #404040;
     top: 0;
     left: 0;
-    background-color: #404040;; /* Black*/
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 35px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    overflow: visible;
 }
 
-.sidenav a {
-    padding: 6px 8px 8px 10px;
-    text-decoration: none;
-    font-size: 23px;
-    color: #b3b3b3;
-    display: block;
-    transition: 0.3s
+#home, #help, #info {
+    height: 60px;
 }
 
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+#homeimg:hover, #helpimg:hover, #infoimg:hover {
+    width: 35px;
+    height: 35px;
+    transition: 0.2s;
+    padding: 16px 0px 0px 5px;
 }
 
-.sidenav .closebtn {
+#homeimg, #helpimg, #infoimg {
+    width: 30px;
+    height: 30px;
+    padding: 16px 0px 0px 9px;
+    
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: #404040;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+ 
     position: absolute;
-    top: -11px;
-    right: 0px;
-    font-size: 40px;
-    margin-left: 50px;
+    top: 23px;
+    left: 140%; 
+    z-index: 1;
+   
+    opacity: 0;
+    transition: opacity .6s;
+    transition-delay: 1s;
 }
 
-#main {
-    transition: margin-left .5s;
-    padding: 20px;
-    margin-left: 50px;
-    margin-right: -8px;
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
-#navicon {
-    color: #404040;;
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
 }
-
-
 
 
 
@@ -58,45 +81,90 @@
 /* * * * * * * * * * * * * * * /
 /* Student name: Johnny Kingi */
 /******************************/
+#main {
+    padding: 20px;
+    margin-left: 50px;
+    margin-right: -8px;
+}
 
 #current-location {
     width: 49%;
     float: left;
+    text-align: center;
 }
 
 #chosen-location {
     width: 49%;
     float: right;
+    text-align: center;
 }
 
 h1 {
-    margin-top: -20px;
     margin-bottom: 40px;
-    color: #C71585;
-    font-family: "Arial Black";
+    color: black;
+    font-family: tahoma;
 }
 
 h2 {
-    padding-top: 20px;
-    font-family: Arial;
+    text-align: center;
+    padding-top: 10px;
+    font-family: tahoma;
 }
 
 #map,#map2 {
     position:relative;
     height: 200px;
     width: 90%;
+
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 20px;
 }
 img {
     width: 90px;
     height: 100px;
+
+    display: block;
+    margin: auto;
 }
 input {
     width: 90%;
     height: 20px;
-
     font-size: 12pt;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #cccccc;
 }
+button {
+    width: 80%;
+    height: 30px;
+
+    margin-bottom: 50px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: Tahoma;
+    background-color: #5c5c8a;
+}
+button:hover {
+    background-color:  green;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+table {
+    width: 90%;
+    height: 200px;
+
+    font-size: 14pt;
+    text-align: center;
+    margin: auto;
+}
+th {
+    font-size: 16pt;
+}
+td,th {
+    border-bottom: 1px solid #ddd;
+}
+
 
 /******************************/
 /* More Details Page          */
@@ -117,8 +185,6 @@ tr {
 }
 
 
-
-
 /******************************/
 /* Help Page                  */
 /* * * * * * * * * * * * * * * /
@@ -127,10 +193,8 @@ tr {
 
 #help-text {
     margin-left: -24px;  
-    font-family: Arial;
+    font-family: Tahoma;
 }
-
-
 
 
 /******************************/
@@ -140,6 +204,6 @@ tr {
 /******************************/
 
 #resources-text {
-    margin-left: -24px;    
-    font-family: Arial;
+    margin-left: 0px;    
+    font-family: Tahoma;
 }
