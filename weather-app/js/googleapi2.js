@@ -8,28 +8,26 @@ var lattitude2="-43.525650",
 
 //setting all weather data variables from api
 $.getJSON(openweapi,function(data){
-                
-                var city = data.name,
-                    description = data.weather[0].description,
-                    temperature =  data.main.temp,
-                    windspeed =  data.wind.speed,
-                    weathericon = data.weather[0].icon,
+    
+    var city = data.name,
+        description = data.weather[0].description,
+        temperature =  data.main.temp,
+        windspeed =  data.wind.speed;
+        weathericon = data.weather[0].icon,
 
-                    tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-                    iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+        tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-                //setting weather descripton in html
-                document.getElementById("weatherinfo2").innerHTML = 
-
-                "City name =          " + city +
-                "<br/>Description =   " + description + 
-                "<br/>Temperature &#8451; =   " + tempcels +
-                "<br/>Windspeed meter/sec =      " + windspeed;
-
-                //setting img in html
-                document.getElementById("iconurl").src=iconurl; 
-            });        
-
+    //setting weather descripton in html table    
+    document.getElementById("weatherinfo2").innerHTML =
+    "<tr><th>"+ city +"</th></tr>"
+    +"<tr><td>Description:   " + description + "</td></tr>"
+    +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+    +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+    
+    //setting img in html
+    document.getElementById("iconurl2").src=iconurl2;
+});
 //initiate google.map api2
 $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
 
@@ -103,27 +101,26 @@ $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
     
     //retrieving data from weather app and displaying
     $.getJSON(openweapi,function(data){
-        //setting all weather data variables from api
+    
         var city = data.name,
             description = data.weather[0].description,
             temperature =  data.main.temp,
-            windspeed =  data.wind.speed,
+            windspeed =  data.wind.speed;
             weathericon = data.weather[0].icon,
 
-            tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-            iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+        tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-        //setting weather descripton in html
-        document.getElementById("weatherinfo2").innerHTML = 
-
-        "City name =          " + city +
-        "<br/>Description =   " + description + 
-        "<br/>Temperature  &#8451; =   " + tempcels +
-        "<br/>Windspeed meter/sec =      " + windspeed;
-
-        //setting img in html
-        document.getElementById("iconurl").src=iconurl; 
-    });        
+            //setting weather descripton in html table    
+        document.getElementById("weatherinfo2").innerHTML =
+        "<tr><th>"+ city +"</th></tr>"
+        +"<tr><td>Description:   " + description + "</td></tr>"
+        +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+        +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+            
+            //setting img in html
+        document.getElementById("iconurl2").src=iconurl2;
+    });
 
 
     if (places.geometry.viewport) {
