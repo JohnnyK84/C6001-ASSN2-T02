@@ -193,10 +193,7 @@ tr {
 
 #help-text {
     margin-left: -24px;  
-}
-
-#help-text {
-    font-family: Arial;
+    font-family: Tahoma;
 }
 
 
@@ -207,5 +204,6 @@ tr {
 /******************************/
 
 #resources-text {
-    margin-left: -24px;    
+    margin-left: 0px;    
+    font-family: Tahoma;
 }
