@@ -16,7 +16,7 @@
 }
 
 #home, #help, #info {
-    height: 60px;
+    height: 50px;
 }
 
 #homeimg:hover, #helpimg:hover, #infoimg:hover {
@@ -102,13 +102,13 @@
 h1 {
     margin-bottom: 40px;
     color: black;
-    font-family: tahoma;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 h2 {
     text-align: center;
     padding-top: 10px;
-    font-family: tahoma;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #map,#map2 {
@@ -139,17 +139,28 @@ button {
     width: 80%;
     height: 30px;
 
+    border: none;  /*Removed borders of the buttons*/
     margin-bottom: 50px;
     text-align: center;
     color: white;
     font-size: 16px;
-    font-family: Tahoma;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: #5c5c8a;
 }
+
 button:hover {
-    background-color:  green;
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    width: 82%;
+    height: 33px;
+
+    background-color: #5c5c8a;
+    box-shadow: 0 6px 13px 0 rgba(0,0,0,0.60), 0 12px 17px 0 rgba(0,0,0,0.25);
+    transition: .3s;
 }
+
+/*button:hover {
+    background-color:  #30DA30;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}*/
 table {
     width: 90%;
     height: 200px;
@@ -193,7 +204,7 @@ tr {
 
 #help-text {
     margin-left: -24px;  
-    font-family: Tahoma;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 
@@ -205,5 +216,5 @@ tr {
 
 #resources-text {
     margin-left: 0px;    
-    font-family: Tahoma;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
