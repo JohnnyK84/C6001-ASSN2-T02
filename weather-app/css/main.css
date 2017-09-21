@@ -81,10 +81,6 @@ h2 {
     font-family: Arial;
 }
 
-#help-text {
-    font-family: Arial;
-}
-
 #map,#map2 {
     position:relative;
     height: 200px;
@@ -131,6 +127,7 @@ tr {
 
 #help-text {
     margin-left: -24px;  
+    font-family: Arial;
 }
 
 
@@ -144,4 +141,5 @@ tr {
 
 #resources-text {
     margin-left: -24px;    
+    font-family: Arial;
 }
