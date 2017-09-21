@@ -16,18 +16,17 @@ var lattitude="-37.6878",
                   weathericon = data.weather[0].icon,
 
                   tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-                  iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+                  iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-              //setting weather descripton in html    
+              //setting weather descripton in html table    
               document.getElementById("weatherinfo").innerHTML =
-
-              "City name =          " + city +
-              "<br/>Description =   " + description + 
-              "<br/>Temperature &#8451; =   " + tempcels +
-              "<br/>Windspeed meter/sec =      " + windspeed;
-
+              "<tr><th>"+ city +"</th></tr>"
+              +"<tr><td>Description:   " + description + "</td></tr>"
+              +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+              +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+              
               //setting img in html
-              document.getElementById("iconurl2").src=iconurl2;
+              document.getElementById("iconurl").src=iconurl;
     });
 
 //initiate google.map api
@@ -103,28 +102,26 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     
       //retrieving data from weather app and displaying
       $.getJSON(openweapi,function(data){
-      
-              var city = data.name,
-                  description = data.weather[0].description,
-                  temperature =  data.main.temp,
-                  windspeed =  data.wind.speed;
-                  weathericon = data.weather[0].icon,
+        
+        var city = data.name,
+            description = data.weather[0].description,
+            temperature =  data.main.temp,
+            windspeed =  data.wind.speed;
+            weathericon = data.weather[0].icon,
 
-                  tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-                  iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+            tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+            iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-              //setting weather descripton in html    
-              document.getElementById("weatherinfo").innerHTML =
-
-              "City name =          " + city +
-              "<br/>Description =   " + description + 
-              "<br/>Temperature &#8451; =   " + tempcels +
-              "<br/>Windspeed meter/sec =      " + windspeed;
-
-              //setting img in html
-              document.getElementById("iconurl2").src=iconurl2;
-      });
-      
+        //setting weather descripton in html table    
+        document.getElementById("weatherinfo").innerHTML =
+        "<tr><th>"+ city +"</th></tr>"
+        +"<tr><td>Description:   " + description + "</td></tr>"
+        +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+        +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+        
+        //setting img in html
+        document.getElementById("iconurl").src=iconurl;
+});
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
