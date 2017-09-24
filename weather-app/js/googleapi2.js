@@ -6,7 +6,7 @@ var lattitude2="-43.525650",
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
 
-//setting all weather data variables from api
+//setting all weather data variables from weather api
 $.getJSON(openweapi,function(data){
     
     var city = data.name,
@@ -25,7 +25,7 @@ $.getJSON(openweapi,function(data){
     +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
     +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
     
-    //setting img in html
+    //setting icon img url in html
     document.getElementById("iconurl2").src=iconurl2;
 });
 //initiate google.map api2
