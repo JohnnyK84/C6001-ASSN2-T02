@@ -28,6 +28,8 @@ $.getJSON(openweapi,function(data){
     //setting icon img url in html
     document.getElementById("iconurl2").src=iconurl2;
 });
+
+setTimeout(function(){
 //initiate google.map api2
 $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
 
@@ -136,3 +138,4 @@ $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
     map2.fitBounds(bounds);
     });
 });
+}, 500);
