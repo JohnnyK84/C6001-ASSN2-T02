@@ -29,9 +29,8 @@ $.getJSON(openweapi,function(data){
     document.getElementById("iconurl2").src=iconurl2;
 });
 
-setTimeout(function(){
 //initiate google.map api2
-$(document).ready(function initAutocomplete2(longitude2,lattitude2) {
+function initAutocomplete2(longitude2,lattitude2) {
 
     var map2 = new google.maps.Map(document.getElementById('map2'), {
     center: {lat: -43.525650, lng: 172.639847},
@@ -137,5 +136,4 @@ $(document).ready(function initAutocomplete2(longitude2,lattitude2) {
 
     map2.fitBounds(bounds);
     });
-});
-}, 500);
+};
