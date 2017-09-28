@@ -1,4 +1,4 @@
-//variables to return gps coords.
+//variables to return gps coordinates.
 var lattitude2="-43.525650",
     longitude2="172.639847",
     //http for weather map api loaded into variable
@@ -6,27 +6,37 @@ var lattitude2="-43.525650",
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
 
-//setting all weather data variables from weather api
-$.getJSON(openweapi,function(data){
+    //setting all weather data variables from weather api
+    $.getJSON(openweapi,function(data){
     
-    var city = data.name,
-        description = data.weather[0].description,
-        temperature =  data.main.temp,
-        windspeed =  data.wind.speed;
-        weathericon = data.weather[0].icon,
+            var city = data.name,
+                epoch = data.dt,
+                description = data.weather[0].description,
+                temperature =  data.main.temp,
+                windspeed =  data.wind.speed;
+                weathericon = data.weather[0].icon,
 
-        tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
-
-    //setting weather descripton in html table    
-    document.getElementById("weatherinfo2").innerHTML =
-    "<tr><th>"+ city +"</th></tr>"
-    +"<tr><td>Description:   " + description + "</td></tr>"
-    +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-    +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
-    
-    //setting icon img url in html
-    document.getElementById("iconurl2").src=iconurl2;
+                tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+                iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+                dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
+            
+            var myDate = new Date( data.dt *1000);
+            
+            var json1 = $.getJSON(dateTime,function(mapdata){ 
+            
+            //setting weather descripton in html table    
+            document.getElementById("weatherinfo2").innerHTML =
+                "<tr><th>"+ city +"</th></tr>"
+                +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
+                +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                +"<tr><td>Description:   " + description + "</td></tr>"
+                +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+                +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+            })      
+        
+        
+        //setting icon img url in html
+        document.getElementById("iconurl2").src=iconurl2;
 });
 
 //initiate google.map api2
@@ -104,20 +114,28 @@ function initAutocomplete2(longitude2,lattitude2) {
     $.getJSON(openweapi,function(data){
     
         var city = data.name,
+            epoch = data.dt,
             description = data.weather[0].description,
             temperature =  data.main.temp,
             windspeed =  data.wind.speed;
             weathericon = data.weather[0].icon,
 
-        tempcels = (temperature - 273.15).toFixed(2), //convert from kelvin to celsius
-        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
-
+            tempcels = (temperature - 273.15).toFixed(2), //convert from kelvin to celsius
+            iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+            dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
+            
+            var myDate = new Date( data.dt *1000);
+            
+            var json1 = $.getJSON(dateTime,function(mapdata){ 
             //setting weather descripton in html table    
-        document.getElementById("weatherinfo2").innerHTML =
-        "<tr><th>"+ city +"</th></tr>"
-        +"<tr><td>Description:   " + description + "</td></tr>"
-        +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-        +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+            document.getElementById("weatherinfo2").innerHTML =
+                "<tr><th>"+ city +"</th></tr>"
+                +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
+                +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                +"<tr><td>Description:   " + description + "</td></tr>"
+                +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+                +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+            })
             
             //setting img in html
         document.getElementById("iconurl2").src=iconurl2;
