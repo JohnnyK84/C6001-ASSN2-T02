@@ -20,19 +20,18 @@ var lattitude2="-43.525650",
                 iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
                 dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
-            var myDate = new Date( data.dt *1000);
+            var myDate = new Date(data.dt*1000);
             
-            var json1 = $.getJSON(dateTime,function(mapdata){ 
-            
-            //setting weather descripton in html table    
-            document.getElementById("weatherinfo2").innerHTML =
-                "<tr><th>"+ city +"</th></tr>"
-                +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
-                +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
-                +"<tr><td>Description:   " + description + "</td></tr>"
-                +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-                +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
-            })      
+            var json1 = $.getJSON(dateTime,function(mapdata){             
+                //setting weather descripton in html table    
+                document.getElementById("weatherinfo2").innerHTML =
+                    "<tr><th>"+ city +"</th></tr>"
+                    +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
+                    +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                    +"<tr><td>Description:   " + description + "</td></tr>"
+                    +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+                    +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+                })      
         
         
         //setting icon img url in html
@@ -124,7 +123,7 @@ function initAutocomplete2(longitude2,lattitude2) {
             iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
             dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
-            var myDate = new Date( data.dt *1000);
+            var myDate = new Date(data.dt*1000);
             
             var json1 = $.getJSON(dateTime,function(mapdata){ 
             //setting weather descripton in html table    

@@ -9,7 +9,7 @@ var lattitude="-37.6878",
   //setting all weather data variables from weather api
   $.getJSON(openweapi,function(data){
               
-              var city = data.name,
+            var city = data.name,
                   epoch = data.dt,
                   description = data.weather[0].description,
                   temperature =  data.main.temp,
@@ -20,9 +20,9 @@ var lattitude="-37.6878",
                   iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
                   dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
 
-              var myDate = new Date(epoch*1000);
+            var myDate = new Date(data.dt*1000);
 
-              var json1 = $.getJSON(dateTime,function(mapdata){ 
+            var json1 = $.getJSON(dateTime,function(mapdata){ 
               //setting weather descripton in html table    
               document.getElementById("weatherinfo").innerHTML =
                   "<tr><th>"+ city +"</th></tr>"
@@ -123,7 +123,7 @@ function initAutocomplete(lattitude,longitude,openweapi) {
             iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
             dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
-            var myDate = new Date(epoch*1000);
+            var myDate = new Date(data.dt*1000);
             
             var json1 = $.getJSON(dateTime,function(mapdata){ 
               //setting weather descripton in html table 
