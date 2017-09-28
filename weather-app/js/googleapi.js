@@ -104,17 +104,19 @@ function initAutocomplete(lattitude,longitude,openweapi) {
       $.getJSON(openweapi,function(data){
         
         var city = data.name,
+            timezone = data.dt,
             description = data.weather[0].description,
             temperature =  data.main.temp,
             windspeed =  data.wind.speed;
             weathericon = data.weather[0].icon,
 
-            tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+            tempcels = (temperature - 273.15).toFixed(2), //convert from kelvin to celsius
             iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
-        //setting weather descripton in html table    
+          console.log(timezone);
+            //setting weather descripton in html table    
         document.getElementById("weatherinfo").innerHTML =
-        "<tr><th>"+ city +"</th></tr>"
+        "<tr><th>"+ city + timezone +"</th></tr>"
         +"<tr><td>Description:   " + description + "</td></tr>"
         +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
         +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"

@@ -109,7 +109,7 @@ function initAutocomplete2(longitude2,lattitude2) {
             windspeed =  data.wind.speed;
             weathericon = data.weather[0].icon,
 
-        tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+        tempcels = (temperature - 273.15).toFixed(2), //convert from kelvin to celsius
         iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
 
             //setting weather descripton in html table    
