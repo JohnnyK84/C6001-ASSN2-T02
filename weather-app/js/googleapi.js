@@ -20,6 +20,11 @@ var lattitude="-37.6878",
                   iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
                   dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
 
+                  console.log(data.name)
+                  console.log(data.coord.lat)
+                  console.log(data.coord.lon)
+                  console.log(dateTime)
+
             var myDate = new Date(data.dt*1000);
 
             var json1 = $.getJSON(dateTime,function(mapdata){ 
@@ -123,18 +128,25 @@ function initAutocomplete(lattitude,longitude,openweapi) {
             iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
             dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
-            var myDate = new Date(data.dt*1000);
+
+            console.log(data.name)
+            console.log(data.coord.lat)
+            console.log(data.coord.lon)
+            console.log(dateTime)
+
+            var myDate2 = new Date(data.dt*1000);
             
             var json1 = $.getJSON(dateTime,function(mapdata){ 
               //setting weather descripton in html table 
               document.getElementById("weatherinfo").innerHTML =
               "<tr><th>"+ city +"</th></tr>"
               +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
-              +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+              +"<tr><td>Local time:   " + myDate2.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
               +"<tr><td>Description:   " + description + "</td></tr>"
               +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
               +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
             })
+
               
         //setting img in html
         document.getElementById("iconurl").src=iconurl;
