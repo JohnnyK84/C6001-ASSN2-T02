@@ -32,8 +32,10 @@ var lattitude="-37.6878",
               //setting weather descripton in html table    
               document.getElementById("weatherinfo").innerHTML =
                   "<tr><th>"+ city +"</th></tr>"
+                  +"<tr><td></td></tr>"
                   +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
                   +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                  +"<tr><td></td></tr>"
                   +"<tr><td>Description:   " + description + "</td></tr>"
                   +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
                   +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
@@ -140,8 +142,10 @@ function initAutocomplete(lattitude,longitude,openweapi) {
               document.getElementById("weatherinfo").innerHTML =
               "<tr><th>"+ city +"</th></tr>"
               // #22 Change timeZone for second location entered
+              +"<tr><td></td></tr>"
               +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
               +"<tr><td>Local time:   " + myDate2.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
+              +"<tr><td></td></tr>"
               +"<tr><td>Description:   " + description + "</td></tr>"
               +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
               +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"

@@ -1,6 +1,6 @@
 //variables to return gps coordinates.
 var lattitude2="-43.525650",
-    longitude2="172.639847",
+    longitude2="172.639847";
     //http for weather map api loaded into variable
     var openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
@@ -28,8 +28,10 @@ var lattitude2="-43.525650",
                 //setting weather descripton in html table    
                 document.getElementById("weatherinfo2").innerHTML =
                     "<tr><th>"+ city +"</th></tr>"
+                    +"<tr><td></td></tr>"
                     +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
                     +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                    +"<tr><td></td></tr>"
                     +"<tr><td>Description:   " + description + "</td></tr>"
                     +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
                     +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
@@ -135,8 +137,10 @@ function initAutocomplete2(longitude2,lattitude2) {
             document.getElementById("weatherinfo2").innerHTML =
                 "<tr><th>"+ city +"</th></tr>"
                 // #22 Change timeZone for second location entered
+                +"<tr><td></td></tr>"
                 +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
                 +"<tr><td>Local time:   " + myDate3.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
+                +"<tr><td></td></tr>"
                 +"<tr><td>Description:   " + description + "</td></tr>"
                 +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
                 +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
