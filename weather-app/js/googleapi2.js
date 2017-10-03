@@ -2,25 +2,27 @@
 var lattitude2="-43.525650",
     longitude2="172.639847",
     //http for weather map api loaded into variable
-    openweapi = 
+    var openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
 
     //setting all weather data variables from weather api
-    $.getJSON(openweapi,function(data){
+    $.getJSON(openweapi, function(data){
     
             var city = data.name,
+                // #22 Isolating dateTime (epoch) data on openweathermap by sourcing data.dt
                 epoch = data.dt,
                 description = data.weather[0].description,
                 temperature =  data.main.temp,
                 windspeed =  data.wind.speed;
                 weathericon = data.weather[0].icon,
 
-                tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+                tempcels = (temperature - 273.15).toFixed(2), //convert from kelvin to celsius
                 iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
                 dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
-            var myDate = new Date(data.dt*1000);
+            // #22 Convert epoch time into Human Readable dateTime, with code from https://www.epochconverter.com/programming/#javascript
+            var myDate = new Date(epoch*1000);
             
             var json1 = $.getJSON(dateTime,function(mapdata){             
                 //setting weather descripton in html table    
@@ -102,7 +104,7 @@ function initAutocomplete2(longitude2,lattitude2) {
     //taking gps coords from google places api
     lattitude2 = places.geometry.location.lat(),
     longitude2 = places.geometry.location.lng();
-    openweapi = 
+    var openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
 
@@ -110,9 +112,10 @@ function initAutocomplete2(longitude2,lattitude2) {
     //window.alert('latttitude:  ' + lattitude2 + '    longitude:  ' + longitude2);
     
     //retrieving data from weather app and displaying
-    $.getJSON(openweapi,function(data){
+    $.getJSON(openweapi, function(data){
     
         var city = data.name,
+            // #22 Isolating dateTime (epoch) data on openweathermap by sourcing data.dt
             epoch = data.dt,
             description = data.weather[0].description,
             temperature =  data.main.temp,
@@ -123,14 +126,17 @@ function initAutocomplete2(longitude2,lattitude2) {
             iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
             dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
-            var myDate = new Date(data.dt*1000);
+
+            // #22 Convert epoch time into Human Readable dateTime, with code from https://www.epochconverter.com/programming/#javascript
+            var myDate3 = new Date(epoch*1000);
             
-            var json1 = $.getJSON(dateTime,function(mapdata){ 
+            var json1 = $.getJSON(dateTime, function(mapdata){ 
             //setting weather descripton in html table    
             document.getElementById("weatherinfo2").innerHTML =
                 "<tr><th>"+ city +"</th></tr>"
+                // #22 Change timeZone for second location entered
                 +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
-                +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                +"<tr><td>Local time:   " + myDate3.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
                 +"<tr><td>Description:   " + description + "</td></tr>"
                 +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
                 +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"

@@ -7,10 +7,11 @@ var lattitude="-37.6878",
     places;
   
   //setting all weather data variables from weather api
-  $.getJSON(openweapi,function(data){
+  $.getJSON(openweapi, function(data){
               
             var city = data.name,
-                  epoch = data.dt,
+                // #22 Isolating dateTime (epoch) data on openweathermap by sourcing data.dt
+                epoch = data.dt,
                   description = data.weather[0].description,
                   temperature =  data.main.temp,
                   windspeed =  data.wind.speed;
@@ -25,9 +26,9 @@ var lattitude="-37.6878",
                   console.log(data.coord.lon)
                   console.log(dateTime)
 
-            var myDate = new Date(data.dt*1000);
+            var myDate = new Date(epoch*1000);
 
-            var json1 = $.getJSON(dateTime,function(mapdata){ 
+            var json1 = $.getJSON(dateTime, function(mapdata){ 
               //setting weather descripton in html table    
               document.getElementById("weatherinfo").innerHTML =
                   "<tr><th>"+ city +"</th></tr>"
@@ -109,15 +110,17 @@ function initAutocomplete(lattitude,longitude,openweapi) {
 
       //http for weather map api loaded into variable
       var openweapi = 
-      'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d';
+      'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
+      place;
 
       // pop up alert to display lattitude / longitude coords
       //window.alert('lattitude:  ' + lattitude + '    longitude:  ' + longitude);
     
       //retrieving data from weather app and displaying
-      $.getJSON(openweapi,function(data){
+      $.getJSON(openweapi, function(data){
         
         var city = data.name,
+            // #22 Isolating dateTime (epoch) data on openweathermap by sourcing data.dt
             epoch = data.dt,
             description = data.weather[0].description,
             temperature =  data.main.temp,
@@ -129,17 +132,14 @@ function initAutocomplete(lattitude,longitude,openweapi) {
             dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
             
 
-            console.log(data.name)
-            console.log(data.coord.lat)
-            console.log(data.coord.lon)
-            console.log(dateTime)
-
-            var myDate2 = new Date(data.dt*1000);
+            // #22 Convert epoch time into Human Readable dateTime, with code from https://www.epochconverter.com/programming/#javascript
+            var myDate2 = new Date(epoch*1000);
             
-            var json1 = $.getJSON(dateTime,function(mapdata){ 
+            var json1 = $.getJSON(dateTime, function(mapdata){ 
               //setting weather descripton in html table 
               document.getElementById("weatherinfo").innerHTML =
               "<tr><th>"+ city +"</th></tr>"
+              // #22 Change timeZone for second location entered
               +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
               +"<tr><td>Local time:   " + myDate2.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
               +"<tr><td>Description:   " + description + "</td></tr>"
