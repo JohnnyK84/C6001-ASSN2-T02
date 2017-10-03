@@ -24,7 +24,7 @@ var lattitude2="-43.525650",
             // #22 Convert epoch time into Human Readable dateTime, with code from https://www.epochconverter.com/programming/#javascript
             var myDate = new Date(epoch*1000);
             
-            var json1 = $.getJSON(dateTime,function(mapdata){             
+            var json1 = $.getJSON(dateTime, function(mapdata){             
                 //setting weather descripton in html table    
                 document.getElementById("weatherinfo2").innerHTML =
                     "<tr><th>"+ city +"</th></tr>"
