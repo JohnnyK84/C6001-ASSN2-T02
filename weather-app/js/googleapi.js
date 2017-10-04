@@ -1,4 +1,4 @@
-//variables to return gps coordinates.
+//variables to return gps coordinates for Tauranga.
 var lattitude="-37.6878",
     longitude="176.1651",
     //http for weather map api loaded into variable
@@ -21,15 +21,10 @@ var lattitude="-37.6878",
                   iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
                   dateTime = 'https://maps.googleapis.com/maps/api/timezone/json?location='+data.coord.lat+','+data.coord.lon+'&timestamp='+epoch+'&key=AIzaSyBTM7XM-ggjUCaXmlyzwyPrdgKtpF1VZU4';
 
-                  console.log(data.name)
-                  console.log(data.coord.lat)
-                  console.log(data.coord.lon)
-                  console.log(dateTime)
-
-            var myDate = new Date(epoch*1000);
+            let myDate = new Date(epoch*1000);
 
             var json1 = $.getJSON(dateTime, function(mapdata){ 
-              //setting weather descripton in html table    
+              //setting weather descripton in html table 
               document.getElementById("weatherinfo").innerHTML =
                   "<tr><th>"+ city +"</th></tr>"
                   +"<tr><td></td></tr>"
@@ -38,7 +33,7 @@ var lattitude="-37.6878",
                   +"<tr><td></td></tr>"
                   +"<tr><td>Description:   " + description + "</td></tr>"
                   +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-                  +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+                  +"<tr><td>Windspeed meter/sec =   " + windspeed; "</td></tr>"
               })
 
               
@@ -135,7 +130,7 @@ function initAutocomplete(lattitude,longitude,openweapi) {
             
 
             // #22 Convert epoch time into Human Readable dateTime, with code from https://www.epochconverter.com/programming/#javascript
-            var myDate2 = new Date(epoch*1000);
+            let myDate2 = new Date(epoch*1000);
             
             var json1 = $.getJSON(dateTime, function(mapdata){ 
               //setting weather descripton in html table 
@@ -148,7 +143,7 @@ function initAutocomplete(lattitude,longitude,openweapi) {
               +"<tr><td></td></tr>"
               +"<tr><td>Description:   " + description + "</td></tr>"
               +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-              +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+              +"<tr><td>Windspeed meter/sec =   " + windspeed; "</td></tr>"
             })
 
               

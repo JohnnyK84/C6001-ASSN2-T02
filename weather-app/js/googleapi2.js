@@ -1,4 +1,4 @@
-//variables to return gps coordinates.
+//variables to return gps coordinates for Christchurch.
 var lattitude2="-43.525650",
     longitude2="172.639847";
     //http for weather map api loaded into variable
@@ -34,7 +34,7 @@ var lattitude2="-43.525650",
                     +"<tr><td></td></tr>"
                     +"<tr><td>Description:   " + description + "</td></tr>"
                     +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-                    +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+                    +"<tr><td>Windspeed meter/sec =   " + windspeed; "</td></tr>"
                 })      
         
         
@@ -143,7 +143,7 @@ function initAutocomplete2(longitude2,lattitude2) {
                 +"<tr><td></td></tr>"
                 +"<tr><td>Description:   " + description + "</td></tr>"
                 +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-                +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+                +"<tr><td>Windspeed meter/sec =   " + windspeed; "</td></tr>"
             })
             
             //setting img in html
