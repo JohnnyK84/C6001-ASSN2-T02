@@ -1,8 +1,10 @@
+
 //variables to return gps coordinates for Tauranga.
 var lattitude="-37.6878",
-    longitude="176.1651",
+    longitude="176.1651";
+
     //http for weather map api loaded into variable
-    openweapi = 
+    var openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
   
@@ -29,14 +31,13 @@ var lattitude="-37.6878",
                   "<tr><th>"+ city +"</th></tr>"
                   +"<tr><td></td></tr>"
                   +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
-                  +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                  +"<tr><td>Local time:   " + myDate.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
                   +"<tr><td></td></tr>"
                   +"<tr><td>Description:   " + description + "</td></tr>"
                   +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
                   +"<tr><td>Windspeed meter/sec =   " + windspeed; "</td></tr>"
               })
-
-              
+             
               //setting icon img url in html
               document.getElementById("iconurl").src=iconurl;
     });
@@ -100,10 +101,12 @@ function initAutocomplete(lattitude,longitude,openweapi) {
         title: place.name,
         position: place.geometry.location
       }));
+      
 
-      //receiving gps coord from google places api
+    // receiving gps coordinates from google places api
       lattitude = place.geometry.location.lat(),
       longitude = place.geometry.location.lng();
+
 
       //http for weather map api loaded into variable
       var openweapi = 
@@ -149,16 +152,20 @@ function initAutocomplete(lattitude,longitude,openweapi) {
               
         //setting img in html
         document.getElementById("iconurl").src=iconurl;
-});
+    });
+
+
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
       } else {
         bounds.extend(place.geometry.location);
       }
+
+      return lattitude,longitude;
     });
     
       map.fitBounds(bounds);
 
-  });
-}
+    });
+  }

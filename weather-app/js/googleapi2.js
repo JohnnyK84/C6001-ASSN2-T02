@@ -1,6 +1,8 @@
+
 //variables to return gps coordinates for Christchurch.
 var lattitude2="-43.525650",
     longitude2="172.639847";
+
     //http for weather map api loaded into variable
     var openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
@@ -30,7 +32,7 @@ var lattitude2="-43.525650",
                     "<tr><th>"+ city +"</th></tr>"
                     +"<tr><td></td></tr>"
                     +"<tr><td>Time Zone:   " + mapdata.timeZoneId + "</td></tr>"
-                    +"<tr><td>Local time:   " + myDate.toLocaleString() + "</td></tr>"
+                    +"<tr><td>Local time:   " + myDate.toLocaleString("en-US", {timeZone: mapdata.timeZoneId}) + "</td></tr>"
                     +"<tr><td></td></tr>"
                     +"<tr><td>Description:   " + description + "</td></tr>"
                     +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
@@ -43,7 +45,7 @@ var lattitude2="-43.525650",
 });
 
 //initiate google.map api2
-function initAutocomplete2(longitude2,lattitude2) {
+function initAutocomplete2(lattitude2,longitude2) {
 
     var map2 = new google.maps.Map(document.getElementById('map2'), {
     center: {lat: -43.525650, lng: 172.639847},
@@ -53,7 +55,6 @@ function initAutocomplete2(longitude2,lattitude2) {
 
     //get user input data
     var input2 = document.getElementById('pac-input2');
-
     var searchBox2 = new google.maps.places.SearchBox(input2);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -69,7 +70,7 @@ function initAutocomplete2(longitude2,lattitude2) {
     places = searchBox2.getPlaces();
     if (places.length == 0) {
         return;
-      }  
+    }  
      if (places.length ==1) {
       localStorage.setItem('input2', places[0].name);
     }
@@ -106,6 +107,8 @@ function initAutocomplete2(longitude2,lattitude2) {
     //taking gps coords from google places api
     lattitude2 = places.geometry.location.lat(),
     longitude2 = places.geometry.location.lng();
+    
+    //http for weather map api loaded into variable
     var openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
@@ -163,4 +166,4 @@ function initAutocomplete2(longitude2,lattitude2) {
 
     map2.fitBounds(bounds);
     });
-};
+}
