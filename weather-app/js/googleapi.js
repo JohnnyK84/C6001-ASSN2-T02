@@ -9,28 +9,34 @@ var lattitude="-37.6878",
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
     
-  //setting all weather data variables from weather api
-  $.getJSON(openweapi,function(data){
+//setting all weather data variables from weather api
+$.getJSON(openweapi,function(data){
               
-              var city = data.name,
-                  description = data.weather[0].description,
-                  temperature =  data.main.temp,
-                  windspeed =  data.wind.speed;
-                  weathericon = data.weather[0].icon,
+    var city = data.name,
+        description = data.weather[0].description,
+        temperature =  data.main.temp,
+        windspeed =  data.wind.speed,
+        weathericon = data.weather[0].icon,
+        sunriseunix = data.sys.sunrise;
+        sunsetunix = data.sys.sunset;
+        
+        tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+        iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png', //setting url for weather icon
+        formattedTime= sunriseConversion(sunriseunix),//convert unix to standart date/time
+        formattedTimeSunset = sunsetConversion(sunsetunix);//convert unix to standart date/time
 
-                  tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-                  iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+    //setting weather descripton in html table    
+    document.getElementById("weatherinfo").innerHTML =
+    "<tr><th>"+ city +"</th></tr>"
+    +"<tr><td>Description:   " + description + "</td></tr>"
+    +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
+    +"<tr><td>Windspeed meter/sec =      " + windspeed + "</td></tr>"
+    +"<tr><td>Sunrise NZDT:      " + formattedTime + "</td></tr>"
+    +"<tr><td>Sunrise NZDT:      " + formattedTimeSunset; "</td></tr>"
 
-              //setting weather descripton in html table    
-              document.getElementById("weatherinfo").innerHTML =
-              "<tr><th>"+ city +"</th></tr>"
-              +"<tr><td>Description:   " + description + "</td></tr>"
-              +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-              +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
-              
-              //setting icon img url in html
-              document.getElementById("iconurl").src=iconurl;
-    });
+  //setting icon img url in html
+  document.getElementById("iconurl").src=iconurl;
+});
 
 //initiate google.map api
 function initAutocomplete(lattitude,longitude,openweapi) {
@@ -77,7 +83,7 @@ function initAutocomplete(lattitude,longitude,openweapi) {
       }
 
       var icon = {
-        url: place.icon,
+      url: place.icon,
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
@@ -95,10 +101,11 @@ function initAutocomplete(lattitude,longitude,openweapi) {
       //receiving gps coord from google places api
       lattitude = place.geometry.location.lat(),
       longitude = place.geometry.location.lng();
-
+      
       //http for weather map api loaded into variable
       var openweapi = 
       'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d';
+      places;
 
       // pop up alert to display lattitude / longitude coords
       //window.alert('latttitude:  ' + lattitude + '    longitude:  ' + longitude);
@@ -111,20 +118,27 @@ function initAutocomplete(lattitude,longitude,openweapi) {
             temperature =  data.main.temp,
             windspeed =  data.wind.speed;
             weathericon = data.weather[0].icon,
-
+            sunriseunix = data.sys.sunrise;
+            sunsetunix = data.sys.sunset;
             tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-            iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+            iconurl = 'http://openweathermap.org/img/w/'+weathericon+'.png', //setting url for weather icon
+
+            formattedTime= sunriseConversion(sunriseunix),
+            formattedTimeSunset = sunsetConversion(sunsetunix);
 
         //setting weather descripton in html table    
         document.getElementById("weatherinfo").innerHTML =
         "<tr><th>"+ city +"</th></tr>"
         +"<tr><td>Description:   " + description + "</td></tr>"
         +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-        +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+        +"<tr><td>Windspeed meter/sec =      " + windspeed + "</td></tr>"
+        +"<tr><td>Sunrise NZDT:      " + formattedTime + "</td></tr>"
+        +"<tr><td>Sunrise NZDT:      " + formattedTimeSunset; "</td></tr>"
         
         //setting img in html
         document.getElementById("iconurl").src=iconurl;
-});
+      });
+
       if (place.geometry.viewport) {
         // Only geocodes have viewport.
         bounds.union(place.geometry.viewport);
@@ -134,6 +148,23 @@ function initAutocomplete(lattitude,longitude,openweapi) {
     });
     
       map.fitBounds(bounds);
+    });
+}
+function sunriseConversion(sunriseunix) {
+  var date = new Date(sunriseunix*1000),
+      hours = date.getHours(),
+      minutes = "0" + date.getMinutes(),
+      seconds = "0" + date.getSeconds(),
 
-  });
+      formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+  return formattedTime;
+}
+function sunsetConversion(sunsetunix) {
+  var date = new Date(sunsetunix*1000),
+      hours = date.getHours(),
+      minutes = "0" + date.getMinutes(),
+      seconds = "0" + date.getSeconds(),
+
+      formattedTimeSunset = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+  return formattedTimeSunset;
 }

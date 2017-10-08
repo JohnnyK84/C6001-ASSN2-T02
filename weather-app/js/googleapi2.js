@@ -17,17 +17,23 @@ $.getJSON(openweapi,function(data){
         temperature =  data.main.temp,
         windspeed =  data.wind.speed;
         weathericon = data.weather[0].icon,
-
+        sunriseunix = data.sys.sunrise;
+        sunsetunix = data.sys.sunset,
+        
         tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png', //setting url for weather icon
+        formattedTime= sunriseConversion(sunriseunix),//convert unix to standart date/time
+        formattedTimeSunset = sunsetConversion(sunsetunix);//convert unix to standart date/timethericon = data.weather[0].icon,
 
     //setting weather descripton in html table    
     document.getElementById("weatherinfo2").innerHTML =
     "<tr><th>"+ city +"</th></tr>"
     +"<tr><td>Description:   " + description + "</td></tr>"
     +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-    +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
-    
+    +"<tr><td>Windspeed meter/sec =      " + windspeed + "</td></tr>"
+    +"<tr><td>Sunrise NZDT:      " + formattedTime + "</td></tr>"
+    +"<tr><td>Sunrise NZDT:      " + formattedTimeSunset; "</td></tr>"
+
     //setting icon img url in html
     document.getElementById("iconurl2").src=iconurl2;
 });
@@ -43,7 +49,6 @@ function initAutocomplete2(longitude2,lattitude2) {
 
     //get user input data
     var input2 = document.getElementById('pac-input2');
-
     var searchBox2 = new google.maps.places.SearchBox(input2);
 
     // Bias the SearchBox results towards current map's viewport.
@@ -96,6 +101,7 @@ function initAutocomplete2(longitude2,lattitude2) {
     //taking gps coords from google places api
     lattitude2 = places.geometry.location.lat(),
     longitude2 = places.geometry.location.lng();
+    
     openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude2+'&lon='+longitude2+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
@@ -111,21 +117,26 @@ function initAutocomplete2(longitude2,lattitude2) {
             temperature =  data.main.temp,
             windspeed =  data.wind.speed;
             weathericon = data.weather[0].icon,
+            sunriseunix = data.sys.sunrise;
+            sunsetunix = data.sys.sunset;
+            tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
+            iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png', //setting url for weather icon
 
-        tempcels = (temperature - 273.15).toFixed(2), //covert from kelvin to celsius
-        iconurl2 = 'http://openweathermap.org/img/w/'+weathericon+'.png'; //setting url for weather icon
+            formattedTime= sunriseConversion(sunriseunix),
+            formattedTimeSunset = sunsetConversion(sunsetunix);
 
             //setting weather descripton in html table    
         document.getElementById("weatherinfo2").innerHTML =
         "<tr><th>"+ city +"</th></tr>"
         +"<tr><td>Description:   " + description + "</td></tr>"
         +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
-        +"<tr><td>Windspeed meter/sec =      " + windspeed; "</td></tr>"
+        +"<tr><td>Windspeed meter/sec =      " + windspeed + "</td></tr>"
+        +"<tr><td>Sunrise NZDT:      " + formattedTime + "</td></tr>"
+        +"<tr><td>Sunrise NZDT:      " + formattedTimeSunset; "</td></tr>"    
             
-            //setting img in html
+        //setting img in html
         document.getElementById("iconurl2").src=iconurl2;
     });
-
 
     if (places.geometry.viewport) {
     // Only geocodes have viewport.
@@ -133,10 +144,26 @@ function initAutocomplete2(longitude2,lattitude2) {
     } else {
         bounds.extend(places.geometry.location);
     }
-    
-    return lattitude,longitude;
     });
 
     map2.fitBounds(bounds);
     });
 };
+function sunriseConversion(sunriseunix) {
+    var date = new Date(sunriseunix*1000),
+        hours = date.getHours(),
+        minutes = "0" + date.getMinutes(),
+        seconds = "0" + date.getSeconds(),
+  
+        formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    return formattedTime;
+  }
+  function sunsetConversion(sunsetunix) {
+    var date = new Date(sunsetunix*1000),
+        hours = date.getHours(),
+        minutes = "0" + date.getMinutes(),
+        seconds = "0" + date.getSeconds(),
+  
+        formattedTimeSunset = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    return formattedTimeSunset;
+  }
