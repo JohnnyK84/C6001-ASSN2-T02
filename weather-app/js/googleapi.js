@@ -1,3 +1,6 @@
+//added to clear previous 5 day forecast search on load
+localStorage.clear();
+
 //variables to return gps coords.
 var lattitude="-37.6878",
     longitude="176.1651",
@@ -5,7 +8,7 @@ var lattitude="-37.6878",
     openweapi = 
     'http://api.openweathermap.org/data/2.5/weather?lat='+lattitude+'&lon='+longitude+'&appid=1a7002ce4f09d21794aebec0cd1aa58d',
     places;
-  
+    
   //setting all weather data variables from weather api
   $.getJSON(openweapi,function(data){
               
