@@ -10,7 +10,7 @@
     <link href="./css/main.css" type="text/css" rel="stylesheet" />   
   </head>
 
-  <body onload="initAutocomplete2()">
+  <body>
 
 <!-- Navigation -->
   
@@ -41,7 +41,7 @@
           <section id="current-location">
 
             <!-- Johnny was working this part of the code -->
-            <input id = "pac-input" type="text" placeholder="Type location one here..." spellcheck="true" required/>
+            <input id="pac-input" type="text" placeholder="Type location one here..." spellcheck="true" required/>
             
             <!-- The section to display the map -->
             <div id="map"></div>
@@ -54,8 +54,33 @@
             </div>
 
             <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
-            <button type="button" onclick="window.open('./more-details.html');" id="more-details">
-              <span class="icon"></span>5 Day Forecast</button>
+            <button type="button" id="more-details">
+              <span class="icon"></span>5 Day Forecast
+            </button>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+  
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close">&times;</span>
+        <h2>5 Days Forecast in <span id="city"></span></h2>
+
+      </div>
+      <div class="modal-body">
+        
+          <table id="moreWeatherDetails">
+          <tr>
+            <th>
+            <h1>Please choose a city.</h1>
+            </th>
+          </tr>
+          </table>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  
+  </div>
 
         </section>
 
@@ -78,18 +103,52 @@
           </div>
 
           <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
-          <button type="button" onclick="window.open('./more-details2.html');" id="more-details2">
+          <button type="button"  id="more-details2">
             <span class="icon"></span>5 Day Forecast</button>
+
+
+            <!-- The Modal -->
+      <div id="myModal2" class="modal2">
+        <!-- Modal content 2 -->
+        <div class="modal-content2">
+          <div class="modal-header2">
+            <span class="close2">&times;</span>
+            <h2>5 Days Forecast in <span id="city2"></span></h2>
+          </div>
+          
+          <div class="modal-body2">
+                   
+                <table id="moreWeatherDetails2">
+                    <tr>
+                        <th>
+                        <h1>Please choose a city.</h1>
+                        </th>
+                      </tr>            
+                  </table>
+              
+          </div>
+          <div class="modal-footer2"></div>
+        </div>
+      </div>
+
+
+
         </section>
         
   </div>
 
 <!-- Link your .js files here -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb_UKEQuxmKcT4WyQ7VsGLrhqXyxVwW7A&libraries=places&callback=initAutocomplete"
-            async defer></script>
+
+    <script src="js/googleapi.js" ></script>  
+
+    <script type="text/javascript" src="js/more-details.js"></script>
     
-    <script src="js/googleapi.js" ></script>
-    <script src="js/googleapi2.js"></script>
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="js/moment.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb_UKEQuxmKcT4WyQ7VsGLrhqXyxVwW7A&libraries=places&callback=googleOnLoad&language=en-NZ"
+    async defer></script>    
+ 
 
     <!-- added the script below to get jquery working in electron -->
     <script>if (window.module) module = window.module;</script>
