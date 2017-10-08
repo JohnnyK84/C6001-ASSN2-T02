@@ -32,7 +32,7 @@ $.getJSON(openweapi,function(data){
     +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
     +"<tr><td>Windspeed meter/sec =      " + windspeed + "</td></tr>"
     +"<tr><td>Sunrise NZDT:      " + formattedTime + "</td></tr>"
-    +"<tr><td>Sunrise NZDT:      " + formattedTimeSunset; "</td></tr>"
+    +"<tr><td>Sunset NZDT:      " + formattedTimeSunset; "</td></tr>"
 
   //setting icon img url in html
   document.getElementById("iconurl").src=iconurl;
@@ -133,7 +133,7 @@ function initAutocomplete(lattitude,longitude,openweapi) {
         +"<tr><td>Temperature &#8451; =   " + tempcels + "</td></tr>"
         +"<tr><td>Windspeed meter/sec =      " + windspeed + "</td></tr>"
         +"<tr><td>Sunrise NZDT:      " + formattedTime + "</td></tr>"
-        +"<tr><td>Sunrise NZDT:      " + formattedTimeSunset; "</td></tr>"
+        +"<tr><td>Sunset NZDT:      " + formattedTimeSunset; "</td></tr>"
         
         //setting img in html
         document.getElementById("iconurl").src=iconurl;
