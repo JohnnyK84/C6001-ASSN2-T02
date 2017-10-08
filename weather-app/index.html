@@ -52,7 +52,10 @@
                 <table id="weatherinfo"> </table>
               <img id="iconurl" >
             </div>
+            
+            <div>
 
+            </div>
             <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
             <button type="button" onclick="window.open('./more-details.html');" id="more-details">
               <span class="icon"></span>5 Day Forecast</button>
@@ -76,7 +79,8 @@
             <table id="weatherinfo2"> </table>
             <img id="iconurl2">
           </div>
-
+          <div>
+            </div>
           <!-- The section for 3-5 days weather forecast (whatever API you chose) -->
           <button type="button" onclick="window.open('./more-details2.html');" id="more-details2">
             <span class="icon"></span>5 Day Forecast</button>
@@ -85,12 +89,12 @@
   </div>
 
 <!-- Link your .js files here -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDb_UKEQuxmKcT4WyQ7VsGLrhqXyxVwW7A&libraries=places&callback=initAutocomplete"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1-x_0LZ02erYux9Y51DlAc44MTw4IXyQ&libraries=places&callback=initAutocomplete"
             async defer></script>
     
     <script src="js/googleapi.js" ></script>
     <script src="js/googleapi2.js"></script>
-
+    <script src="js/distance.js"></script>
     <!-- added the script below to get jquery working in electron -->
     <script>if (window.module) module = window.module;</script>
 

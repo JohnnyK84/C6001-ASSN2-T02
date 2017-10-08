@@ -46,6 +46,7 @@ function initAutocomplete2(longitude2,lattitude2) {
     // Bias the SearchBox results towards current map's viewport.
     map2.addListener('bounds_changed', function() {
     searchBox2.setBounds(map2.getBounds());
+
     });
 
     var markers2 = [];
@@ -59,6 +60,9 @@ function initAutocomplete2(longitude2,lattitude2) {
       }  
      if (places.length ==1) {
       localStorage.setItem('input2', places[0].name);
+      localStorage.setItem('lat2', places[0].geometry.location.lat())
+      localStorage.setItem('lng2', places[0].geometry.location.lng())
+      
     }
     // Clear out the old markers.
     markers2.forEach(function(markers2) {
